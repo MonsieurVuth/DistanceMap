@@ -1,0 +1,9 @@
+D:\users\vuth\source\repos\MapDistance\MapDistance\obj\Debug\MapDistance.csproj.CoreCompileInputs.cache
+D:\users\vuth\source\repos\MapDistance\MapDistance\bin\Debug\MapDistance.exe.config
+D:\users\vuth\source\repos\MapDistance\MapDistance\bin\Debug\MapDistance.exe
+D:\users\vuth\source\repos\MapDistance\MapDistance\bin\Debug\MapDistance.pdb
+D:\users\vuth\source\repos\MapDistance\MapDistance\bin\Debug\Newtonsoft.Json.dll
+D:\users\vuth\source\repos\MapDistance\MapDistance\obj\Debug\MapDistance.csproj.CopyComplete
+D:\users\vuth\source\repos\MapDistance\MapDistance\obj\Debug\MapDistance.exe
+D:\users\vuth\source\repos\MapDistance\MapDistance\obj\Debug\MapDistance.pdb
+D:\users\vuth\source\repos\MapDistance\MapDistance\obj\Debug\MapDistance.csprojResolveAssemblyReference.cache
