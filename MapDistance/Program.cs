@@ -63,20 +63,27 @@ namespace MapDistance
             foreach (KeyValuePair<string, string> pair in listdistance.OrderBy(key => key.Key))
             {
                 //Récupération des 50 meilleures résultats
-                if(ind <= 49)
+                if(ind <= 59)
                 {
                     best.Add(pair.Key, pair.Value);
                     ind++;
                 }
             }
 
-            //Faire un croisement entre ces chemins (exemple : prendre les 7 premiers d'un chemin et les 8 derniers d'un autre)
-            foreach (KeyValuePair<string, string> clef in best)
+            //Récupération des meilleurs fitting + Croisement
+            for (int iI = 0; iI <= best.Count - 1; iI++)
             {
-                Console.WriteLine("{0}, {1}", clef.Key, clef.Value);
+                //Parent1
+                String[] array1 = best.ElementAt(iI).Value.Split(' ');
+                int jj = 0;
+                String villes = "";
+                while(jj <= 6)
+                {
+                    villes += array1.ElementAt(jj) + " ";                    
+                    jj++;
+                }
+                Console.WriteLine(villes);
             }
-
-
         }
 
             
