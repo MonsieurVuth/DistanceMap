@@ -62,7 +62,7 @@ namespace MapDistance
             int ind = 0;
             foreach (KeyValuePair<string, string> pair in listdistance.OrderBy(key => key.Key))
             {
-                //Récupération des 50 meilleures résultats
+                //Récupération des 60 meilleures résultats
                 if(ind <= 59)
                 {
                     best.Add(pair.Key, pair.Value);
@@ -71,18 +71,30 @@ namespace MapDistance
             }
 
             //Récupération des meilleurs fitting + Croisement
-            for (int iI = 0; iI <= best.Count - 1; iI++)
+            for (int iI = 0; iI <= best.Count -1; iI++)
             {
-                //Parent1
-                String[] array1 = best.ElementAt(iI).Value.Split(' ');
-                int jj = 0;
-                String villes = "";
-                while(jj <= 6)
+                if(iI < best.Count - 1)
                 {
-                    villes += array1.ElementAt(jj) + " ";                    
-                    jj++;
+                    //Parent1
+                    String[] array1 = best.ElementAt(iI).Value.Split(' ');                   
+                    int jj = 0;                   
+                    String villes = "";
+                    while (jj <= 6)
+                    {
+                        villes += array1.ElementAt(jj) + " ";
+                        jj++;
+                    }
+
+                    //Parent2
+                    String[] array2 = best.ElementAt(iI + 1).Value.Split(' ');
+                    int kk = 0;
+                    while (kk <= 7)
+                    {
+                        villes += array2.ElementAt(kk) + " ";
+                        kk++;
+                    }
+                    Console.WriteLine(villes);
                 }
-                Console.WriteLine(villes);
             }
         }
 
