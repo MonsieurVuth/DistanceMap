@@ -16,9 +16,8 @@ namespace MapDistance
             Random rnd = new Random();
 
             //Génération de liste de parcours sans doublons
-            for (int iI = 0; iI < 2000; iI++)
+            for (int iI = 0; iI < 500; iI++)
             {
-
                 List<MapItem> index = new List<MapItem>();
                 int i = 0;
                 while (i < 15)
@@ -33,12 +32,12 @@ namespace MapDistance
 
             }
 
-            //Calcul des distances
-            Coordinate coor = new Coordinate();
+            //Calcul des distances + récupération des villes associées
             Dictionary<String, String> listdistance = new Dictionary<String, String>();
             List<String> cities = new List<string>();
+            Coordinate coor = new Coordinate();        
             foreach (List<MapItem> ilist in list)
-            {
+            {            
                 String villes = "";
                 int index = ilist.Count;
                 Double distance = 0;
@@ -47,35 +46,41 @@ namespace MapDistance
                     if (j < index - 1)
                     {
                         distance += coor.GetDistance(ilist[j].lan, ilist[j].lng, ilist[j + 1].lan, ilist[j + 1].lng);
-                        villes += ilist[j].city + "--";
+                        villes += ilist[j].city + " ";
                     }
                     else
                     {
                         break;
                     }
                 }
-                //Faire un dictionnaire key value (key = distance, value = list des villes)
+                // dictionnaire key value (key = distance, value = list des villes)
                 listdistance.Add((distance / 1000).ToString(), villes);
+                
             }
-
-            // Loop over pairs with foreach.
+            //Trier par ordre croissant le dictionnaire et récupérer les XXX distances minimales et leur chemin associé
+            Dictionary<String, string> best = new Dictionary<string, string>();
+            int ind = 0;
             foreach (KeyValuePair<string, string> pair in listdistance.OrderBy(key => key.Key))
             {
-                Console.WriteLine("{0}, {1}", pair.Key, pair.Value);
+                //Récupération des 50 meilleures résultats
+                if(ind <= 49)
+                {
+                    best.Add(pair.Key, pair.Value);
+                    ind++;
+                }
             }
-        }
 
-            //Trier par ordre croissant le dictionnaire et récupérer les XXX distances minimales et leur chemin associé
             //Faire un croisement entre ces chemins (exemple : prendre les 7 premiers d'un chemin et les 8 derniers d'un autre)
-
-
-            ////Affichage des distances
-            //var sortedlist = listdistance.OrderBy(d => d);
-            //Console.WriteLine("Distance min : " + sortedlist.First());
-            /*foreach (String dist in sortedlist)
+            foreach (KeyValuePair<string, string> clef in best)
             {
-                Console.WriteLine(dist);
-            }*/
+                Console.WriteLine("{0}, {1}", clef.Key, clef.Value);
+            }
+
+
         }
+
+            
+    
     }
+}
 

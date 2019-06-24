@@ -7,3 +7,11 @@ D:\users\vuth\source\repos\MapDistance\MapDistance\obj\Debug\MapDistance.csproj.
 D:\users\vuth\source\repos\MapDistance\MapDistance\obj\Debug\MapDistance.exe
 D:\users\vuth\source\repos\MapDistance\MapDistance\obj\Debug\MapDistance.pdb
 D:\users\vuth\source\repos\MapDistance\MapDistance\obj\Debug\MapDistance.csprojResolveAssemblyReference.cache
+D:\Users\Vuth\source\repos\DistanceMap\MapDistance\bin\Debug\MapDistance.exe.config
+D:\Users\Vuth\source\repos\DistanceMap\MapDistance\bin\Debug\MapDistance.exe
+D:\Users\Vuth\source\repos\DistanceMap\MapDistance\bin\Debug\MapDistance.pdb
+D:\Users\Vuth\source\repos\DistanceMap\MapDistance\obj\Debug\MapDistance.csprojAssemblyReference.cache
+D:\Users\Vuth\source\repos\DistanceMap\MapDistance\obj\Debug\MapDistance.csproj.CoreCompileInputs.cache
+D:\Users\Vuth\source\repos\DistanceMap\MapDistance\obj\Debug\MapDistance.csproj.CopyComplete
+D:\Users\Vuth\source\repos\DistanceMap\MapDistance\obj\Debug\MapDistance.exe
+D:\Users\Vuth\source\repos\DistanceMap\MapDistance\obj\Debug\MapDistance.pdb
