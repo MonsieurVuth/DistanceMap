@@ -75,6 +75,7 @@ namespace MapDistance
             {
                 if(iI < best.Count - 1)
                 {
+                    List<String> ListOfCities = new List<string>();
                     //Parent1
                     String[] array1 = best.ElementAt(iI).Value.Split(' ');                   
                     int jj = 0;                   
@@ -85,15 +86,20 @@ namespace MapDistance
                         jj++;
                     }
 
+                    // Checker que le parent 1 ne possède pas déjà la ville
                     //Parent2
                     String[] array2 = best.ElementAt(iI + 1).Value.Split(' ');
-                    int kk = 0;
-                    while (kk <= 7)
+                    foreach(String word in array2)
                     {
-                        villes += array2.ElementAt(kk) + " ";
-                        kk++;
+                        if (!villes.Contains(word)){
+                            villes += word + " ";
+                        }
                     }
-                    Console.WriteLine(villes);
+                    if (!best.Values.Contains(villes))
+                    {
+                        ListOfCities.Add(villes);
+                    }
+                    
                 }
             }
         }
