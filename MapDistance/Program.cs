@@ -16,7 +16,7 @@ namespace MapDistance
             Random rnd = new Random();
 
             //Génération de liste de parcours sans doublons
-            for (int iI = 0; iI < 500; iI++)
+            for (int iI = 0; iI < 200; iI++)
             {
                 List<MapItem> index = new List<MapItem>();
                 int i = 0;
@@ -32,80 +32,83 @@ namespace MapDistance
 
             }
 
-            //Calcul des distances + récupération des villes associées
-            Dictionary<String, String> listdistance = new Dictionary<String, String>();
-            List<String> cities = new List<string>();
-            Coordinate coor = new Coordinate();        
-            foreach (List<MapItem> ilist in list)
-            {            
-                String villes = "";
-                int index = ilist.Count;
+            //Calcul coordonées
+            Dictionary<Double, List<MapItem>> DicMap = new Dictionary<double, List<MapItem>>();
+            foreach(List<MapItem>LesVilles in list)
+            {
                 Double distance = 0;
-                for (int j = 0; j < index; j++)
+                Coordinate coor = new Coordinate();
+                int index = LesVilles.Count;
+                for (int j = 0; j < index - 1; j++)
                 {
                     if (j < index - 1)
                     {
-                        distance += coor.GetDistance(ilist[j].lan, ilist[j].lng, ilist[j + 1].lan, ilist[j + 1].lng);
-                        villes += ilist[j].city + " ";
+                        distance += coor.GetDistance(LesVilles[j].lan, LesVilles[j].lng, LesVilles[j + 1].lan, LesVilles[j + 1].lng);
                     }
                     else
                     {
                         break;
                     }
                 }
-                // dictionnaire key value (key = distance, value = list des villes)
-                listdistance.Add((distance / 1000).ToString(), villes);
-                
+                DicMap.Add(distance, LesVilles);
             }
-            //Trier par ordre croissant le dictionnaire et récupérer les XXX distances minimales et leur chemin associé
-            Dictionary<String, string> best = new Dictionary<string, string>();
+
+            //Trier par ordre croissant le dictionnaire et récupérer les 60 plus petites distances
             int ind = 0;
-            foreach (KeyValuePair<string, string> pair in listdistance.OrderBy(key => key.Key))
+            foreach (KeyValuePair<double, List<MapItem>> pair in DicMap.OrderBy(key => key.Key))
             {
-                //Récupération des 60 meilleures résultats
                 if(ind <= 59)
                 {
-                    best.Add(pair.Key, pair.Value);
+                    //parent1
+                    List<MapItem> parent1 = pair.Value;
+                    String ville = " ";
+
+                    foreach (MapItem valcity in pair.Value)
+                    {
+                        ville += valcity.city + " ";
+                    }
                     ind++;
+                    Console.WriteLine(pair.Key + " " + ville);
                 }
-            }
-
-            //Récupération des meilleurs fitting + Croisement
-            for (int iI = 0; iI <= best.Count -1; iI++)
-            {
-                if(iI < best.Count - 1)
-                {
-                    List<String> ListOfCities = new List<string>();
-                    //Parent1
-                    String[] array1 = best.ElementAt(iI).Value.Split(' ');                   
-                    int jj = 0;                   
-                    String villes = "";
-                    while (jj <= 6)
-                    {
-                        villes += array1.ElementAt(jj) + " ";
-                        jj++;
-                    }
-
-                    // Checker que le parent 1 ne possède pas déjà la ville
-                    //Parent2
-                    String[] array2 = best.ElementAt(iI + 1).Value.Split(' ');
-                    foreach(String word in array2)
-                    {
-                        if (!villes.Contains(word)){
-                            villes += word + " ";
-                        }
-                    }
-                    if (!best.Values.Contains(villes))
-                    {
-                        ListOfCities.Add(villes);
-                    }
-                    
-                }
-            }
+            }               
         }
 
-            
-    
+
+
+        //Récupération des meilleurs fitting + Croisement
+        //for (int iI = 0; iI <= best.Count -1; iI++)
+        //{
+        //    if(iI < best.Count - 1)
+        //    {
+        //        List<String> ListOfCities = new List<string>();
+        //        //Parent1
+        //        String[] array1 = best.ElementAt(iI).Value.Split(' ');                   
+        //        int jj = 0;                   
+        //        String villes = "";
+        //        while (jj <= 7)
+        //        {
+        //            villes += array1.ElementAt(jj) + " ";
+        //            jj++;
+        //        }
+
+        //        // Checker que le parent 1 ne possède pas déjà la ville
+        //        //Parent2
+        //        String[] array2 = best.ElementAt(iI + 1).Value.Split(' ');
+        //        int kk = 7;
+        //        while(kk <= 14)
+        //        {
+        //            villes += array2.ElementAt(kk) + " ";
+        //            kk++;
+        //        }
+        //        if (!best.Values.Contains(villes))
+        //        {
+        //            ListOfCities.Add(villes);
+        //        }
+        //        //Récupération lat long -> ToDo
+        //        foreach(String test in ListOfCities)
+        //        {
+        //            Console.WriteLine(test);
+        //        }
     }
-}
+            }
 
