@@ -16,7 +16,7 @@ namespace MapDistance
             Random rnd = new Random();
 
             //Génération de liste de parcours sans doublons
-            for (int iI = 0; iI < 200; iI++)
+            for (int iI = 0; iI < 2000; iI++)
             {
                 List<MapItem> index = new List<MapItem>();
                 int i = 0;
@@ -57,18 +57,28 @@ namespace MapDistance
             int ind = 0;
             foreach (KeyValuePair<double, List<MapItem>> pair in DicMap.OrderBy(key => key.Key))
             {
-                if(ind <= 59)
+                if (ind <= 59)
                 {
-                    //parent1
-                    List<MapItem> parent1 = pair.Value;
                     String ville = " ";
-
+                    Random random = new Random();
+                    int unrand = random.Next(0, 14);
+                    List<MapItem> Parent1 = pair.Value;                    
                     foreach (MapItem valcity in pair.Value)
                     {
+                        //List<MapItem> Parent2 = pair.Value.ElementAt(1);
+                        //List<MapItem> Parent1 = new List<MapItem>();
+                        //Console.WriteLine(Parent1.Count);
+
+                        //List<MapItem> Parent2 = new List<MapItem>();
+                        //Random rand = new Random();
+                        //int alea = rand.Next(0, pair.Value.Count - 1);
+                        //List<MapItem> cities = new List<MapItem>();
                         ville += valcity.city + " ";
                     }
                     ind++;
                     Console.WriteLine(pair.Key + " " + ville);
+                }              
+            }           
                 }
             }               
         }
@@ -109,6 +119,5 @@ namespace MapDistance
         //        {
         //            Console.WriteLine(test);
         //        }
-    }
-            }
+
 
